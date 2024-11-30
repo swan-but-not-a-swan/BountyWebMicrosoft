@@ -1,0 +1,8 @@
+{
+    "dotnet.defaultSolution": "BountyWebApp.sln",
+    "files.exclude": {
+        "": true
+    },
+    "search.useGlobalIgnoreFiles": false,
+    "explorer.excludeGitIgnore": true
+}

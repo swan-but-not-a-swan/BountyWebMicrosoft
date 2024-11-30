@@ -1,0 +1,30 @@
+﻿@using Microsoft.AspNetCore.Authentication
+@using Microsoft.AspNetCore.Identity
+@using BountyWebApp.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject IdentityRedirectManager RedirectManager
+
+    <form class="form-horizontal" action="Account/PerformExternalLogin" method="post">
+        <div>
+            <AntiforgeryToken />
+            <input type="hidden" name="ReturnUrl" value="@ReturnUrl" />
+            <p>
+    
+                <button type="submit" class="btn" name="provider" value="@externalLogin.Name" title="Log in using your @externalLogin.DisplayName account"><img src="Signin.png"/></button>
+            </p>
+        </div>
+    </form>
+
+@code {
+    private AuthenticationScheme externalLogin = default!;
+
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        externalLogin = (await SignInManager.GetExternalAuthenticationSchemesAsync()).FirstOrDefault();
+    }
+}

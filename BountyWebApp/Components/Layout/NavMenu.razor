@@ -1,0 +1,37 @@
+﻿
+
+@inject NavigationManager NavigationManager
+
+<div class="container-fluid">
+    <NavLink class="navbar-nav" href="/Account/Manage">
+        @if(String.IsNullOrEmpty(url))
+        {
+            <img src="placeholder.jpg" alt="Google Profile Picture" class="rounded-circle" style="width:40px;height:40px;" />
+        }
+        else
+        {
+            <img src="@url" alt="Google Profile Picture" class="rounded-circle" style="width:60px;height:60px;" />
+        }
+    </NavLink>
+</div>
+
+
+
+@code {
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+    
+    private string url = "";
+    private string ProfilePictureUrl;
+    protected override async Task OnInitializedAsync()
+    {
+        // var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        //var user = authState.User;
+        //if(user.Identity.IsAuthenticated)
+        //{
+            //string userId = UserManager.GetUserId(user);
+            //url = $"https://landfimages.blob.core.windows.net/profilepictures/{userId}.jpg";
+        //}  
+             
+    }
+}
